@@ -75,10 +75,11 @@ try:
             room_type = "Luxury Villa"
             room_desc = "Gated private bungalow, pool, outdoor dining, and multiple luxury living spaces."
 
-         
+    time.sleep(1)
     print()
     print(f"Room Type = {room_type}")
     print(f"Room Description = {room_desc}")
+    print()
 
 except:
     print("Please enter the correct numerical value for the questions")
