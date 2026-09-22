@@ -6,7 +6,7 @@ print("Are you looking for an Airbnb that's suitable for your upcoming stay?")
 time.sleep(1)
 Budget = float(input('What is your budget? '))
 time.sleep(1)
-Guest = int(input('How many guest are staying over? '))
+Guest = int(input('How many rguest are staying over? '))
 
 try:
     if Guest == 1 :
