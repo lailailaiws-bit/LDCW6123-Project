@@ -4,9 +4,23 @@ print('Hi, Welcome to Airbnb rooms filter!')
 time.sleep(1)
 print("Are you looking for an Airbnb that's suitable for your upcoming stay?")
 time.sleep(1)
-Guest = int(input('How many rguest are staying over? '))
+while True:
+    try:
+        Guest = int(input('How many guest are staying over? '))
+        if Guest > 0:
+            break
+        print("Please enter the correct numerical value to proceed")
+    except:
+         print("NO")
 time.sleep(1)
-Budget = float(input('What is your budget? '))
+while True:
+    try:
+        Budget = float(input('What is the budget for your stay? '))
+        if Budget > 0:
+            break
+        print("Please enter the correct numerical value to proceed")
+    except:
+         print("NO")
 
 try:
     if Guest == 1 :
