@@ -78,6 +78,7 @@ try:
     time.sleep(1)
     print()
     print(f"Room Type = {room_type}")
+    time.sleep(0.5)
     print(f"Room Description = {room_desc}")
     print()
 
