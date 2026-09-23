@@ -44,10 +44,10 @@ Tier_map = {
 
 #=================Budget Logic==================
 def classify_budget(budget: float):
-    if budget < 100:
+    if budget <= 100:
         return "low"
     elif budget <= 250:
-        return "medium"
+        return "mid"
     else :
         return "high"
 
@@ -88,6 +88,18 @@ def user_input():
 
         return total_people, budget
 
+#Output code
+def show_recommendation(tier):
+    print()
+    if tier is None:
+        print("😕 No matching tier found.")
+        print("Try adjusting your budget or number of people.")
+        return
+
+    print(f"Recommended: {tier.name}")
+    print(f"{tier.description}")
+    print(f"Rating: {tier.rating}/5.0")
+
 test = user_input()
 answer = recommend_accommodation(test[0], test[1])
-print(answer)
+show_recommendation(answer)
