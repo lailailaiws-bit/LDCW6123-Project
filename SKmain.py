@@ -36,29 +36,47 @@ Rules = {
 }
 
 #Map budget tiers to accommodation tiers
-TIER_MAP = {
+Tier_map = {
     "low":  Tiers["shared"],
     "mid":  Tiers["room"],
     "high": Tiers["unit"]
 }
 
-print('Welcome to Airbnb filter! \n'
-      'A place where we will recommend your suite tier based on your budget!')
+#=================Budget Logic==================
+def classify_budget(budget: float):
+    if budget < 100:
+        return "low"
+    elif budget <= 250:
+        return "medium"
+    else :
+        return "high"
+
+def recommend_accommodation(total_people, budget):
+    budget_tier = classify_budget(budget)
+    bounds = Rules.get(budget_tier)
+    if bounds == None:
+        return None
+
+    min_people, max_people = bounds
+    if total_people < min_people :
+        return None
+    if max_people is not None and total_people > max_people :
+        return None
+
+    return Tier_map[budget_tier]
+
+
+# print('Welcome to Airbnb filter! \n'
+#       'A place where we will recommend your suite tier based on your budget!')
 def user_input():
     try:
-        Total_people = float(input('How many people are going on the trip? '))
+        total_people = float(input('How many people are going on the trip? '))
         budget = float(input("What's your budget for the trip (in RM)? "))
-        return Total_people, budget
+        return total_people , budget
     except ValueError:
         print('Please enter a valid numerical number.')
         user_input()
 
-
-def classify_budget(Total_people, budget):
-    if budget < 100:
-        budget_tier = "low"
-    elif budget <= 250:
-        budget_tier = "medium"
-    else :
-        budget_tier = "high"
-
+test = user_input()
+answer = recommend_accommodation(test[0], test[1])
+print(answer)
