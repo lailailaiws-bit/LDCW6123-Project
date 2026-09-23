@@ -68,14 +68,25 @@ def recommend_accommodation(total_people, budget):
 
 # print('Welcome to Airbnb filter! \n'
 #       'A place where we will recommend your suite tier based on your budget!')
+
+#Input code
 def user_input():
-    try:
-        total_people = float(input('How many people are going on the trip? '))
-        budget = float(input("What's your budget for the trip (in RM)? "))
-        return total_people , budget
-    except ValueError:
-        print('Please enter a valid numerical number.')
-        user_input()
+    while True:
+        try:
+            total_people = int(input('How many people are going on the trip? '))
+            budget = float(input("What's your nightly budget for accommodation (in RM)? "))
+        except ValueError:
+            print('️️⚠️ Please enter a valid numerical number.')
+            continue
+
+        if budget <= 0:
+            print("⚠️  Budget must be greater than 0.")
+            continue
+        if total_people < 1:
+            print("⚠️  Party size must be at least 1.")
+            continue
+
+        return total_people, budget
 
 test = user_input()
 answer = recommend_accommodation(test[0], test[1])
