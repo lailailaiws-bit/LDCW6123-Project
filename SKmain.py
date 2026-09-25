@@ -1,5 +1,5 @@
+import time
 from dataclasses import dataclass
-
 
 #dataclass for different accommodation types
 @dataclass
@@ -102,6 +102,9 @@ def show_recommendation(tier):
 print('Welcome to Airbnb filter! \n'
       'A place where we will recommend suitable tier of accommodation\n'
       'based on your budget and number of people on your trip!')
+time.sleep(1)
 total_people, budget = user_input()
+time.sleep(1)
 tier = suitable_tier(total_people, budget)
+time.sleep(1)
 show_recommendation(tier)
