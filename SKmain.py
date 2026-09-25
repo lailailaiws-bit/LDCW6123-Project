@@ -1,12 +1,25 @@
 import time
 from dataclasses import dataclass
 
+#What is a dataclass
+
+#dataclass is a blueprint for objects that has same attributes
+#classes' main job is holding attributes for objects
+#dataclass is just a more efficient way to store objects that have the same attributes
+#an attribute is a characteristic, property, or piece of metadata that describes or modifies a specific element.
+
 #dataclass for different accommodation types
 @dataclass
 class Tier :
+#declare the attributes' type
     name: str
     description: str
     rating: float
+
+#assign different value for different objects on all attributes
+#Tier is a class holding up an attributes for an object
+#while Tiers is a dictionary, holding up all the objects, it acts as a shelf organising the objects nicely
+
 Tiers = {
     "shared": Tier(
         name = "Shared room",
@@ -28,14 +41,14 @@ Tiers = {
 }
 
 #----Rules-----
-#map minimum budget tier requirements to number of people
+#a dictionary that maps minimum budget tier requirements to number of people
 Rules = {
     "low":  (1, 2),
     "mid":  (1, None),
     "high": (1, None),
 }
 
-#Map budget tiers to accommodation tiers
+#A dictionary that maps budget tiers to accommodation tiers
 Tier_map = {
     "low":  Tiers["shared"],
     "mid":  Tiers["room"],
@@ -43,6 +56,12 @@ Tier_map = {
 }
 
 #=================Budget Logic==================
+#for our budget logic, we'll classify budget amount into "low", "mid" & "high"
+#we are able to achieve that with classify_budget function
+#next, we'll use suitable_tier to find the suitable tier of accommodation for users.
+#suitable_tier will filter the maximum people that'll suite for the budget to work by using Rules dictionary
+#and use Tier_map dictionary to recommend the suitable tier of accommodation
+
 def classify_budget(budget: float):
     if budget <= 100:
         return "low"
@@ -58,8 +77,6 @@ def suitable_tier(total_people, budget):
         return None
 
     min_people, max_people = bounds
-    if total_people < min_people :
-        return None
     if max_people is not None and total_people > max_people :
         return None
 
@@ -67,6 +84,9 @@ def suitable_tier(total_people, budget):
 
 
 #Input code
+#this part is the input codes where it'll get user's input
+#if users type invalid values, it will loop until users type in valid answers
+
 def user_input():
     while True:
         try:
@@ -87,6 +107,8 @@ def user_input():
 
 
 #Output code
+#print out recommended tier of accommodation for user
+
 def show_recommendation(tier):
     print()
     if tier is None:
@@ -99,6 +121,8 @@ def show_recommendation(tier):
     print(f"Rating: {tier.rating}/5.0")
 
 #============RUNNING=================
+#codes where it allows the program to run
+
 print('Welcome to Airbnb filter! \n'
       'A place where we will recommend suitable tier of accommodation\n'
       'based on your budget and number of people on your trip!')
